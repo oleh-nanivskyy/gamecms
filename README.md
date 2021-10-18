@@ -1,4 +1,5 @@
 ## TODO:
-1. Reaserch OpenAPI
-2. List nessesaty endpoints
-3. Create initial database schema
+1. Connect to database
+2. Write sql functions
+3. Write api
+4. Host to heroku (use containers?)
