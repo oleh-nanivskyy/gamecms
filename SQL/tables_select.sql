@@ -1,0 +1,5 @@
+SELECT * FROM users LIMIT 5;
+SELECT * FROM companies LIMIT 5;
+SELECT * FROM games LIMIT 5;
+SELECT * FROM reviews LIMIT 5;
+SELECT * FROM screenshots LIMIT 5;

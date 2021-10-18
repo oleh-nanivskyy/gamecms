@@ -1,0 +1,795 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Game CMS API",
+        "version": "v1"
+    },
+    "paths": {
+        "/companies": {
+            "get": {
+                "description": "Returns all companies.",
+                "responses": {
+                    "200": {
+                        "description": "A list of companies.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "companyId": { 
+                                                "type": "integer"
+                                            },
+                                            "title": {
+                                                "type": "string"
+                                            },
+                                            "date": {
+                                                "type": "string",
+                                                "format": "date"
+                                            }
+                                        }
+                                    }
+                                },
+                                "example": [
+                                    {
+                                        "companyID": 1,
+                                        "title": "Ubisoft",
+                                        "date": "1986-03-12"
+                                    },
+                                    {
+                                        "companyID": 2,
+                                        "title": "Electronic Arts",
+                                        "date": "1982-05-27"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error."
+                    }
+                }
+            },
+            "post": {
+                "description": "Add a new company.",
+                "responses": {
+                    "201": {
+                        "description": "Company added successfully."
+                    },
+                    "default": {
+                        "description": "Unexpected error."
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "ceo": {
+                                        "type": "string"
+                                    },
+                                    "date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "title": "Ubisoft",
+                                "description": "Game company",
+                                "ceo": "Yves Guillemot",
+                                "date": "1986-03-12"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/companies/{companyId}": {
+            "parameters": [ 
+                {
+                    "name": "companyId",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
+                }
+            ],
+            "get": {
+                "description": "Returns a company by id.",
+                "responses": {
+                    "200": {
+                        "description": "A company.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "companyId": { 
+                                            "type": "integer"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "ceo": {
+                                            "type": "string"
+                                        },
+                                        "date": {
+                                            "type": "string",
+                                            "format": "date"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "value": {
+                                        "companyID": 1,
+                                        "title": "Ubisoft",
+                                        "ceo": "Yves Guillemot",
+                                        "date": "1986-03-12"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error."
+                    }
+                }
+            },
+            "put": {
+                "description": "Update the company info.",
+                "responses": {
+                    "204": {
+                        "description": "Company info updated successfully."
+                    },
+                    "default": {
+                        "description": "Unexpected error."
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "ceo": {
+                                        "type": "string"
+                                    },
+                                    "date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "title": "Ubisoft",
+                                "description": "Game company",
+                                "ceo": "Yves Guillemot",
+                                "date": "1986-03-12"
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete the company.",
+                "responses": {
+                    "204": {
+                        "description": "Company deleted successfully."
+                    },
+                    "default": {
+                        "description": "Unexpected error."
+                    }
+                }
+            }
+        },
+        "/games": {
+            "get": {
+                "description": "Returns all games.",
+                "responses": {
+                    "200": {
+                        "description": "A list of games.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "gameId": { 
+                                                "type": "integer"
+                                            },
+                                            "title": {
+                                                "type": "string"
+                                            },
+                                            "company": {
+                                                "type": "string"
+                                            },
+                                            "date": {
+                                                "type": "string",
+                                                "format": "date"
+                                            }
+                                        }
+                                    }
+                                },
+                                "example": [
+                                    {
+                                        "gameId": 1,
+                                        "title": "Far Cry 6",
+                                        "company": "Ubisoft",
+                                        "date": "2021-10-06"
+                                    },
+                                    {
+                                        "gameId": 2,
+                                        "title": "Titanfall",
+                                        "company": "Electronic Arts",
+                                        "date": "2014-03-11"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error."
+                    }
+                }
+            },
+            "post": {
+                "description": "Add a new game.",
+                "responses": {
+                    "201": {
+                        "description": "Game added successfully."
+                    },
+                    "default": {
+                        "description": "Unexpected error."
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "companyId": {
+                                        "type": "integer"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "title": "Far Cry 6",
+                                "description": "New game",
+                                "date": "2021-10-06",
+                                "companyId": 1
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/games/{gameId}": {
+            "parameters": [
+                {
+                    "name": "gameId",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
+                }
+            ],
+            "get": {
+                "description": "Returns a game by id.",
+                "responses": {
+                    "200": {
+                        "description": "A game.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "gameId": { 
+                                            "type": "integer"
+                                        },
+                                        "companyId": {
+                                            "type": "integer"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "date": {
+                                            "type": "string",
+                                            "format": "date"
+                                        },
+                                        "description": {
+                                            "type": "string"
+                                        },
+                                        "rating": {
+                                            "type": "number",
+                                            "format": "float"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "gameId": 1,
+                                    "companyID": 1,
+                                    "title": "Far Cry 6",
+                                    "date": "1986-03-12",
+                                    "description": "New game",
+                                    "rating": 76.6
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error."
+                    }
+                }
+            },
+            "put": {
+                "description": "Update the game info.",
+                "responses": {
+                    "204": {
+                        "description": "Game info updated successfully."
+                    },
+                    "default": {
+                        "description": "Unexpected error."
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "companyId": {
+                                        "type": "integer"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "companyID": 1,
+                                "title": "Far Cry 6",
+                                "date": "1986-03-12",
+                                "description": "New game"
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete the game.",
+                "responses": {
+                    "204": {
+                        "description": "Game deleted successfully."
+                    },
+                    "default": {
+                        "description": "Unexpected error."
+                    }
+                }
+            }
+        },
+        "/companies/{companyId}/games": {
+            "parameters": [
+                {
+                    "name": "companyId",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
+                }
+            ],
+            "get": {
+                "description": "Returns all games for specific company id.",
+                "responses": {
+                    "200": {
+                        "description": "A list of games.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "gameId": { 
+                                                "type": "integer"
+                                            },
+                                            "title": {
+                                                "type": "string"
+                                            },
+                                            "rating": {
+                                                "type": "number",
+                                                "format": "float"
+                                            }
+                                        }
+                                    }
+                                },
+                                "example": [
+                                    {
+                                        "gameId": 1,
+                                        "title": "Far Cry 6",
+                                        "rating": 76.6
+                                    },
+                                    {
+                                        "gameId": 3,
+                                        "title": "Watch Dogs",
+                                        "rating": 86.6
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error."
+                    }
+                }
+            },
+            "post": {
+                "description": "Add a new game for specific company id.",
+                "responses": {
+                    "201": {
+                        "description": "Game added successfully."
+                    },
+                    "default": {
+                        "description": "Unexpected error."
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "title": "Far Cry 6",
+                                "description": "New game",
+                                "date": "2021-10-06"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/games/{gameId}/thumbnails": {
+            "parameters": [
+                {
+                    "name": "gameId",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
+                }
+            ],
+            "get": {
+                "description": "Returns thumbnails names for the game",
+                "responses": {
+                    "200": {
+                        "description": "A list of thumbnails names.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "scrennshotId": { 
+                                                "type": "integer"
+                                            },
+                                            "thumbnailName": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "example": [
+                                    {
+                                        "scrennshotId": 1,
+                                        "thumbnailName": "thumbnail1"
+                                    },
+                                    {
+                                        "scrennshotId": 1,
+                                        "thumbnailName": "thumbnail2"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error."
+                    }
+                }
+            }
+        },
+        "/screenshots/{screenshotId}": {
+            "parameters": [
+                {
+                    "name": "screenshotId",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
+                }
+            ],
+            "get": {
+                "description": "Returns screenshot names by id.",
+                "responses": {
+                    "200": {
+                        "description": "Screenshot name.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error."
+                    }
+                }
+            }
+        },
+        "/games/{gameId}/reviews": {
+            "parameters": [
+                {
+                    "name": "gameId",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
+                }
+            ],
+            "get": {
+                "description": "Return all reviews for specific game id.",
+                "responses": {
+                    "200": {
+                        "description": "A list of reviews",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "reviewId": {
+                                                "type": "integer"
+                                            },
+                                            "username": {
+                                                "type": "string"
+                                            },
+                                            "text": {
+                                                "type": "string"
+                                            },
+                                            "rating": {
+                                                "type": "integer"
+                                            }
+                                        }
+                                    }
+                                },
+                                "example": [
+                                    {
+                                        "reviewId": 1,
+                                        "username": "John White",
+                                        "text": "Cool game. Recommend.",
+                                        "rating": 85
+                                    },
+                                    {
+                                        "reviewId": 2,
+                                        "username": "John Balck",
+                                        "text": "Agree. Recommend too.",
+                                        "rating": 86
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error."
+                    }
+                }
+            }
+        },
+        "/users/{userId}/reviews": {
+            "parameters": [
+                {
+                    "name": "userId",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
+                }
+            ],
+            "get": {
+                "description": "Return all reviews for specific user id.",
+                "responses": {
+                    "200": {
+                        "description": "A list of reviews",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "reviewId": {
+                                                "type": "integer"
+                                            },
+                                            "gameTitle": {
+                                                "type": "string"
+                                            },
+                                            "text": {
+                                                "type": "string"
+                                            },
+                                            "rating": {
+                                                "type": "integer"
+                                            }
+                                        }
+                                    }
+                                },
+                                "example": [
+                                    {
+                                        "reviewId": 1,
+                                        "gameTitle": "Far Cry 6",
+                                        "text": "Cool game. Recommend.",
+                                        "rating": 85
+                                    },
+                                    {
+                                        "reviewId": 3,
+                                        "gameTitle": "Titanfall",
+                                        "text": "Fall in love with this. You should try too.",
+                                        "rating": 96
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error."
+                    }
+                }
+            },
+            "post": {
+                "description": "Add new review for specific user.",
+                "responses": {
+                    "201": {
+                        "description": "Review added successfully."
+                    },
+                    "default": {
+                        "description": "Unexpected error."
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "gameId": {
+                                        "type": "integer"
+                                    },
+                                    "text": {
+                                        "type": "string"
+                                    },
+                                    "rating": {
+                                        "type": "integer"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "gameId": 1,
+                                "text": "Impressive game.",
+                                "rating": 99
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/reviews/{reviewId}": {
+            "parameters": [
+                {
+                    "name": "reviewId",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
+                }
+            ],
+            "patch": {
+                "description": "Patch the review info.",
+                "responses": {
+                    "204": {
+                        "description": "Review patched successfully."
+                    },
+                    "default": {
+                        "description": "Unexpected error."
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "text": {
+                                        "type": "string"
+                                    },
+                                    "rating": {
+                                        "type": "integer"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "text": "My edited review.",
+                                "rating": 45
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete the review.",
+                "responses": {
+                    "204": {
+                        "description": "Review deleted successfully."
+                    },
+                    "default": {
+                        "description": "Unexpected error."
+                    }
+                }
+            }
+        }
+    }
+}
