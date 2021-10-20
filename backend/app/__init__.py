@@ -1,7 +1,11 @@
-from flask import Flask
+from flask import Flask, url_for, redirect
 
 app = Flask(__name__, subdomain_matching=True)
-app.config['SERVER_NAME'] = 'localhost:5000'
+
+
+@app.route('/')
+def hello():
+    return redirect(url_for('v1.index'))
 
 from app.api import bp
 app.register_blueprint(bp)

@@ -1,5 +1,21 @@
-## TODO:
-1. Connect to database
-2. Write sql functions
-3. Write api
-4. Host to heroku (use containers?)
+## Use
+
+```
+docker-compose up -d
+```
+
+## URL
+
+```
+localhost:5000/v1
+```
+
+## Endpoints
+
+```
+/companies
+```
+
+## TODO
+1. Correctly convert sql select to json
+2. Add all endpoints

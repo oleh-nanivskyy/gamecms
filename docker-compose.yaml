@@ -1,13 +1,28 @@
 version: "3.8"
 
 services:
+  app:
+    image: python:3.9.5
+    command: sh -c "cd /app && pip install -r requirements.txt && flask run --host=0.0.0.0"
+    depends_on:
+      - "postgres"
+    ports:
+      - 5000:5000
+    working_dir: /app
+    volumes:
+      - ./backend:/app
+    environment:
+      FLASK_APP: app
+      FLASK_ENV: development
+      POSTGRES_HOST: postgres
+      POSTGRES_PASSWORD: secret
+      POSTGRES_USER: root
+      POSTGRES_DB: gamecms
   postgres:
     image: postgres:12.8-alpine
-    command: bash -c "psql gamecms -f /sql/schema.sql && psql gamecms -f /sql/tables_insert.sql"
-    working_dir: /sql
     volumes:
       - gamecms-data:/var/lib/postgresql/data
-      - ./sql:/sql
+      - ./init-db:/docker-entrypoint-initdb.d
     environment:
       POSTGRES_PASSWORD: secret
       POSTGRES_USER: root
