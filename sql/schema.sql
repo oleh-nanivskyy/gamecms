@@ -1,4 +1,4 @@
--- CREATE TYPE roles AS ENUM ('regular', 'admin');
+CREATE TYPE roles AS ENUM ('regular', 'admin');
 CREATE TABLE IF NOT EXISTS users (
     user_id SERIAL PRIMARY KEY,
     login varchar(60) NOT NULL,
