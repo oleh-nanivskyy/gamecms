@@ -130,12 +130,10 @@
                                     }
                                 },
                                 "example": {
-                                    "value": {
-                                        "companyID": 1,
-                                        "title": "Ubisoft",
-                                        "ceo": "Yves Guillemot",
-                                        "date": "1986-03-12"
-                                    }
+                                    "companyID": 1,
+                                    "title": "Ubisoft",
+                                    "ceo": "Yves Guillemot",
+                                    "date": "1986-03-12"
                                 }
                             }
                         }
