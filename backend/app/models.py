@@ -18,7 +18,8 @@ class Users(db.Model):
     password = db.Column(db.String(60), nullable=False)
     role = db.Column(db.Enum(Roles), nullable=False)
 
-    reviews = db.relationship('Reviews', backref='users', lazy=True)
+    reviews = db.relationship('Reviews', backref='users', 
+                              lazy=True, cascade="all, delete")
 
 
 class Companies(db.Model):
@@ -28,7 +29,8 @@ class Companies(db.Model):
     foundation_date = db.Column(db.DateTime, nullable=False)
     ceo = db.Column(db.String(60))
     
-    games = db.relationship('Games', backref='companies', lazy=True)
+    games = db.relationship('Games', backref='companies', 
+                            lazy=True, cascade="all, delete")
 
 
 class Games(db.Model):
@@ -39,8 +41,10 @@ class Games(db.Model):
     description = db.Column(db.String(2000))
     release_date = db.Column(db.DateTime, nullable=False)
 
-    reviews = db.relationship('Reviews', backref='games', lazy=True)
-    screenshots = db.relationship('Screenshots', backref='games', lazy=True)
+    reviews = db.relationship('Reviews', backref='games', 
+                              lazy=True, cascade="all, delete")
+    screenshots = db.relationship('Screenshots', backref='games', 
+                                  lazy=True, cascade="all, delete")
 
 
 class Reviews(db.Model):
@@ -53,6 +57,7 @@ class Reviews(db.Model):
     rating = db.Column(db.Integer, nullable=False)
     creation_date = db.Column(db.DateTime, nullable=False)
     edit_date = db.Column(db.DateTime)
+
 
 class Screenshots(db.Model):
     screenshot_id = db.Column(db.Integer, primary_key=True)
