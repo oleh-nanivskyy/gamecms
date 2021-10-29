@@ -36,5 +36,5 @@ CREATE TABLE IF NOT EXISTS screenshots (
     screenshot_id SERIAL PRIMARY KEY,
     game_id INTEGER NOT NULL REFERENCES games(game_id),
     file_name VARCHAR(256) NOT NULL,
-    thumnnail_name VARCHAR(256) NOT NULL
+    thumbnail_name VARCHAR(256) NOT NULL
 );

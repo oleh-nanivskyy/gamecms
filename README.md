@@ -1,5 +1,44 @@
-## TODO:
-1. Connect to database
-2. Write sql functions
-3. Write api
-4. Host to heroku (use containers?)
+## Use
+
+```
+docker-compose up -d
+```
+
+## URL
+
+```
+localhost:5000
+```
+
+## Endpoints
+
+```
+/companies
+```
+```
+/companies/<int:company_id>
+```
+```
+/companies/<int:company_id>/games
+```
+```
+/games
+```
+```
+/games/<int:game_id>
+```
+```
+/games/<int:game_id>/thumbnails
+```
+```
+/games/<int:game_id>/reviews
+```
+```
+/screenshots/<int:screenshot_id>
+```
+```
+/users/<int:user_id>/reviews
+```
+```
+/reviews/<int:review_id>
+```
